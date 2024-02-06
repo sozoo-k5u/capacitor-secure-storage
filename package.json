@@ -1,6 +1,6 @@
 {
   "name": "capacitor-secure-storage",
-  "version": "1.0.3",
+  "version": "1.0.7",
   "description": "Work with Secure Storage for iOS, Android",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -11,7 +11,7 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "SozooCapacitorSecureStorage.podspec"
+    "CapacitorSecureStorage.podspec"
   ],
   "author": "Sozoo Studio",
   "license": "MIT",
@@ -59,9 +59,13 @@
     "swiftlint": "^1.0.1",
     "typescript": "~4.1.5"
   },
-  "peerDependencies": {
-    "@capacitor/core": "^5.6.0"
+  "dependencies": {
+    "@capacitor/core": "^5.6.0",
+    "@capacitor/android": "^5.6.0",
+    "@capacitor/app": "^5.0.6",
+    "@capacitor/ios": "^5.6.0"
   },
+  
   "prettier": "@ionic/prettier-config",
   "swiftlint": "@ionic/swiftlint-config",
   "eslintConfig": {

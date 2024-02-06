@@ -1,11 +1,11 @@
-# @sozoo/capacitor-secure-storage
+# capacitor-secure-storage
 
 Work with Secure Storage for iOS, Android
 
 ## Install
 
 ```bash
-npm install @sozoo/capacitor-secure-storage
+npm install capacitor-secure-storage
 npx cap sync
 ```
 

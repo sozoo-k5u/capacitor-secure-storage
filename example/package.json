@@ -16,9 +16,9 @@
     "@capacitor/core": "latest",
     "@capacitor/camera": "latest",
     "@capacitor/splash-screen": "latest",
-    "@sozoo/capacitor-secure-storage": "file:..",
     "@capacitor/ios": "^5.0.0",
-    "@capacitor/android": "^5.0.0"
+    "@capacitor/android": "^5.0.0",
+    "capacitor-secure-storage": "file:.."
   },
   "devDependencies": {
     "@capacitor/cli": "latest",

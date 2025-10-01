@@ -1,6 +1,11 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { SecureStorageGetItemRequest, SecureStorageGetItemResult, SecureStoragePlugin, SecureStorageSetItemRequest } from './definitions';
+import type {
+  SecureStorageGetItemRequest,
+  SecureStorageGetItemResult,
+  SecureStoragePlugin,
+  SecureStorageSetItemRequest,
+} from './definitions';
 
 export class SecureStorageWeb extends WebPlugin implements SecureStoragePlugin {
   async echo(options: { value: string }): Promise<{ value: string }> {

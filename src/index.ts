@@ -12,10 +12,10 @@ export const getItemFromSecureStorage = async (
   key: string,
 ): Promise<string | null> => {
   const getItemResult = await SecureStorage.getItem({ key });
-    if (getItemResult === null) {
-      return null;
-    }
-    return getItemResult.data;
+  if (getItemResult === null) {
+    return null;
+  }
+  return getItemResult.data;
 };
 export const setItemInSecureStorage = async (
   key: string,

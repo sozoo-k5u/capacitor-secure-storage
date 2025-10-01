@@ -11,10 +11,7 @@ public class KeyStoreException extends Throwable {
     static {
         errorMap = new HashMap<>();
         errorMap.put(ErrorKind.missingKey, "Empty key or missing key param");
-        errorMap.put(
-                ErrorKind.invalidData,
-                "The data in the store is in an invalid format"
-        );
+        errorMap.put(ErrorKind.invalidData, "The data in the store is in an invalid format");
         errorMap.put(ErrorKind.osError, "An OS error occurred (%s)");
         errorMap.put(ErrorKind.unknownError, "An unknown error occurred: %s");
     }
@@ -34,11 +31,7 @@ public class KeyStoreException extends Throwable {
         reject(call, kind, null);
     }
 
-    public static void reject(
-            PluginCall call,
-            ErrorKind kind,
-            @Nullable Throwable osException
-    ) {
+    public static void reject(PluginCall call, ErrorKind kind, @Nullable Throwable osException) {
         KeyStoreException ex = new KeyStoreException(kind, osException);
         call.reject(ex.message, ex.code);
     }
@@ -50,8 +43,7 @@ public class KeyStoreException extends Throwable {
             switch (kind) {
                 case osError, unknownError -> {
                     if (osException != null) {
-                        this.message =
-                                String.format(message, osException.getClass().getSimpleName());
+                        this.message = String.format(message, osException.getClass().getSimpleName());
                     }
                 }
                 default -> this.message = message;
@@ -78,7 +70,6 @@ public class KeyStoreException extends Throwable {
         missingPrefix,
         invalidData,
         osError,
-        unknownError,
+        unknownError
     }
 }
-

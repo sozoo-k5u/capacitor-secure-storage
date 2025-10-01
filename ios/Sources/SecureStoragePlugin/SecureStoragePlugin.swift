@@ -6,26 +6,32 @@ import Capacitor
  * here: https://capacitorjs.com/docs/plugins/ios
  */
 @objc(SecureStoragePlugin)
-public class SecureStoragePlugin: CAPPlugin {
+public class SecureStoragePlugin: CAPPlugin, CAPBridgedPlugin {
+    public let identifier = "SecureStoragePlugin"
+    public let jsName = "SecureStorage"
+    public let pluginMethods: [CAPPluginMethod] = [
+        CAPPluginMethod(name: "getItem", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setItem", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "removeItem", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "clear", returnType: CAPPluginReturnPromise)
+    ]
     let kKeyOption = "key"
     let kDataOption = "data"
     let kSyncOption = "sync"
     let keychain = KeychainSwift()
-    let _sync = false; //we WONT sync data with cloud
+    let _sync = false // we WONT sync data with cloud
     let _prefix = "CAPACITOR_SECURE_STORAGE_"
-    
-    
+
     @objc func echo(_ call: CAPPluginCall) {
         let value = call.getString("value") ?? ""
         call.resolve([
             "value": value
         ])
     }
-    
-    
+
     @objc func setItem(_ call: CAPPluginCall) {
         guard let key = getKeyParam(from: call),
-            let data = getDataParam(from: call)
+              let data = getDataParam(from: call)
         else {
             return
         }
@@ -50,7 +56,7 @@ public class SecureStoragePlugin: CAPPlugin {
 
     @objc func removeItem(_ call: CAPPluginCall) {
         guard let key = getKeyParam(from: call) else {
-        return
+            return
         }
 
         tryKeychainOp(call, _sync, {
@@ -66,11 +72,9 @@ public class SecureStoragePlugin: CAPPlugin {
         })
     }
 
-    
-
     func getKeyParam(from call: CAPPluginCall) -> String? {
         if let key = call.getString(kKeyOption),
-        !key.isEmpty {
+           !key.isEmpty {
             return _prefix + key
         }
 
@@ -80,13 +84,12 @@ public class SecureStoragePlugin: CAPPlugin {
 
     func getDataParam(from call: CAPPluginCall) -> String? {
         if let value = call.getString(kDataOption) {
-        return value
+            return value
         }
 
         KeychainError.reject(call: call, kind: .invalidData)
         return nil
     }
-
 
     func tryKeychainOp(_ call: CAPPluginCall, _ sync: Bool, _ operation: () throws -> Void) {
         var err: KeychainError?

@@ -29,10 +29,10 @@
     }
   },
   "devDependencies": {
-    "@capacitor/android": "^7.0.0",
-    "@capacitor/core": "^7.0.0",
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
     "@capacitor/docgen": "^0.3.0",
-    "@capacitor/ios": "^7.0.0",
+    "@capacitor/ios": "^7.4.3",
     "@ionic/eslint-config": "^0.4.0",
     "@ionic/prettier-config": "^4.0.0",
     "@ionic/swiftlint-config": "^2.0.0",
@@ -63,10 +63,10 @@
   },
   "module": "dist/esm/index.js",
   "dependencies": {
-    "@capacitor/android": "^7.1.0",
+    "@capacitor/android": "^7.4.3",
     "@capacitor/app": "^7.1.0",
-    "@capacitor/core": "^7.1.0",
-    "@capacitor/ios": "^7.1.0"
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/ios": "^7.4.3"
   },
   "files": [
     "android/src/main/",

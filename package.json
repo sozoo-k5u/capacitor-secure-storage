@@ -1,75 +1,74 @@
 {
-  "author" : "Sozoo Studio",
-  "bugs" : {
-    "url" : "https://github.com/sozoo-k5u/capacitor-secure-storage/issues"
+  "author": "Sozoo Studio",
+  "bugs": {
+    "url": "https://github.com/sozoo-k5u/capacitor-secure-storage/issues"
   },
-  "license" : "MIT",
-  "description" : "Work with Secure Storage for iOS, Android",
-  "swiftlint" : "@ionic/swiftlint-config",
-  "keywords" : [
+  "license": "MIT",
+  "description": "Work with Secure Storage for iOS, Android",
+  "swiftlint": "@ionic/swiftlint-config",
+  "keywords": [
     "capacitor",
     "plugin",
     "native"
   ],
-  "eslintConfig" : {
-    "extends" : "@ionic/eslint-config/recommended"
+  "eslintConfig": {
+    "extends": "@ionic/eslint-config/recommended"
   },
-  "repository" : {
-    "url" : "git+https://github.com/sozoo-k5u/capacitor-secure-storage.git",
-    "type" : "git"
+  "repository": {
+    "url": "git+https://github.com/sozoo-k5u/capacitor-secure-storage.git",
+    "type": "git"
   },
-  "version" : "1.0.7",
-  "types" : "dist/esm/index.d.ts",
-  "capacitor" : {
-    "ios" : {
-      "src" : "ios"
+  "version": "1.1.0",
+  "types": "dist/esm/index.d.ts",
+  "capacitor": {
+    "ios": {
+      "src": "ios"
     },
-    "android" : {
-      "src" : "android"
+    "android": {
+      "src": "android"
     }
   },
-  "devDependencies" : {
-    "@ionic/prettier-config" : "^1.0.1",
-    "swiftlint" : "^1.0.1",
-    "@capacitor/plugin-migration-v5-to-v6" : "^0.0.6",
-    "prettier" : "~2.3.0",
-    "typescript" : "~4.1.5",
-    "@capacitor/docgen" : "^0.0.18",
-    "prettier-plugin-java" : "~1.0.2",
-    "eslint" : "^8.57.0",
-    "rimraf" : "^3.0.2",
-    "@capacitor/android" : "^6.0.0",
-    "@capacitor/ios" : "^6.0.0",
-    "@ionic/eslint-config" : "^0.4.0",
-    "@ionic/swiftlint-config" : "^1.1.2",
-    "rollup" : "^2.32.0",
-    "@capacitor/core" : "^6.0.0"
+  "devDependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/docgen": "^0.3.0",
+    "@capacitor/ios": "^7.0.0",
+    "@ionic/eslint-config": "^0.4.0",
+    "@ionic/prettier-config": "^4.0.0",
+    "@ionic/swiftlint-config": "^2.0.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-java": "^2.6.6",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.30.1",
+    "swiftlint": "^2.0.0",
+    "typescript": "~4.1.5"
   },
-  "prettier" : "@ionic/prettier-config",
-  "scripts" : {
-    "verify:ios" : "xcodebuild -scheme CapacitorSecureStorage -destination generic/platform=iOS",
-    "prettier" : "prettier \"**/*.{css,html,ts,js,java}\"",
-    "lint" : "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
-    "docgen" : "docgen --api SecureStoragePlugin --output-readme README.md --output-json dist/docs.json",
-    "build" : "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
-    "prepublishOnly" : "npm run build",
-    "eslint" : "eslint . --ext ts",
-    "fmt" : "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
-    "verify:android" : "cd android && ./gradlew clean build test && cd ..",
-    "clean" : "rimraf ./dist",
-    "verify:web" : "npm run build",
-    "watch" : "tsc --watch",
-    "verify" : "npm run verify:ios && npm run verify:android && npm run verify:web",
-    "swiftlint" : "node-swiftlint"
+  "prettier": "@ionic/prettier-config",
+  "scripts": {
+    "verify:ios": "xcodebuild -scheme CapacitorSecureStorage -destination generic/platform=iOS",
+    "prettier": "prettier \"**/*.{css,html,ts,js,java}\" --plugin=prettier-plugin-java",
+    "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
+    "docgen": "docgen --api SecureStoragePlugin --output-readme README.md --output-json dist/docs.json",
+    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.mjs",
+    "prepublishOnly": "npm run build",
+    "eslint": "eslint . --ext ts",
+    "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
+    "verify:android": "cd android && ./gradlew clean build test && cd ..",
+    "clean": "rimraf ./dist",
+    "verify:web": "npm run build",
+    "watch": "tsc --watch",
+    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
+    "swiftlint": "node-swiftlint"
   },
-  "module" : "dist/esm/index.js",
-  "dependencies" : {
-    "@capacitor/app" : "^6.0.2",
-    "@capacitor/core" : "^6.0.2",
-    "@capacitor/ios" : "^6.0.2",
-    "@capacitor/android" : "^6.0.2"
+  "module": "dist/esm/index.js",
+  "dependencies": {
+    "@capacitor/android": "^7.1.0",
+    "@capacitor/app": "^7.1.0",
+    "@capacitor/core": "^7.1.0",
+    "@capacitor/ios": "^7.1.0"
   },
-  "files" : [
+  "files": [
     "android/src/main/",
     "android/build.gradle",
     "dist/",
@@ -78,7 +77,7 @@
     "ios/Tests",
     "Package.swift"
   ],
-  "main" : "dist/plugin.cjs.js",
-  "name" : "capacitor-secure-storage",
-  "unpkg" : "dist/plugin.js"
+  "main": "dist/plugin.cjs.js",
+  "name": "capacitor-secure-storage",
+  "unpkg": "dist/plugin.js"
 }

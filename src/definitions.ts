@@ -1,9 +1,7 @@
 export interface SecureStoragePlugin {
   echo(options: { value: string }): Promise<{ value: string }>;
 
-  getItem: (
-    request: SecureStorageGetItemRequest,
-  ) => Promise<SecureStorageGetItemResult | null>;
+  getItem: (request: SecureStorageGetItemRequest) => Promise<SecureStorageGetItemResult | null>;
 
   setItem: (request: SecureStorageSetItemRequest) => Promise<void>;
 

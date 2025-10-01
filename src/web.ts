@@ -13,9 +13,7 @@ export class SecureStorageWeb extends WebPlugin implements SecureStoragePlugin {
     return options;
   }
   prefix = 'capacitor-storage_';
-  async getItem({
-    key,
-  }: SecureStorageGetItemRequest): Promise<SecureStorageGetItemResult | null> {
+  async getItem({ key }: SecureStorageGetItemRequest): Promise<SecureStorageGetItemResult | null> {
     const value = localStorage.getItem(`${this.prefix}${key}`);
     if (value === null) {
       return { data: null };
@@ -37,16 +35,14 @@ export class SecureStorageWeb extends WebPlugin implements SecureStoragePlugin {
   }
   async clear(): Promise<void> {
     const { keys } = await this.getPrefixedKeys({ prefix: this.prefix });
-    keys.forEach(key => {
+    keys.forEach((key) => {
       localStorage.removeItem(key);
     });
 
     return Promise.resolve();
   }
 
-  protected async getPrefixedKeys(options: {
-    prefix: string;
-  }): Promise<{ keys: string[] }> {
+  protected async getPrefixedKeys(options: { prefix: string }): Promise<{ keys: string[] }> {
     const keys: string[] = [];
 
     for (let i = 0; i < localStorage.length; i++) {

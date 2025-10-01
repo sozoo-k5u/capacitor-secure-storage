@@ -68,13 +68,10 @@ public class SecureStoragePlugin extends Plugin {
             return;
         }
 
-        tryStorageOp(
-            call,
-            () -> {
-                storeDataInKeyStore(key, data);
-                call.resolve();
-            }
-        );
+        tryStorageOp(call, () -> {
+            storeDataInKeyStore(key, data);
+            call.resolve();
+        });
     }
 
     @PluginMethod
@@ -84,15 +81,12 @@ public class SecureStoragePlugin extends Plugin {
             call.reject("Invalid key");
             return;
         }
-        tryStorageOp(
-            call,
-            () -> {
-                String data = getDataFromKeyStore(key);
-                JSObject result = new JSObject();
-                result.put("data", data != null ? data : JSObject.NULL);
-                call.resolve(result);
-            }
-        );
+        tryStorageOp(call, () -> {
+            String data = getDataFromKeyStore(key);
+            JSObject result = new JSObject();
+            result.put("data", data != null ? data : JSObject.NULL);
+            call.resolve(result);
+        });
     }
 
     @PluginMethod
@@ -103,42 +97,33 @@ public class SecureStoragePlugin extends Plugin {
             return;
         }
 
-        tryStorageOp(
-            call,
-            () -> {
-                boolean success = removeDataFromKeyStore(key);
-                JSObject result = new JSObject();
-                result.put("success", success);
-                call.resolve(result);
-            }
-        );
+        tryStorageOp(call, () -> {
+            boolean success = removeDataFromKeyStore(key);
+            JSObject result = new JSObject();
+            result.put("success", success);
+            call.resolve(result);
+        });
     }
 
     @PluginMethod
     public void clear(PluginCall call) {
-        tryStorageOp(
-            call,
-            () -> {
-                clearKeyStore(this.PREFIX);
-                call.resolve();
-            }
-        );
+        tryStorageOp(call, () -> {
+            clearKeyStore(this.PREFIX);
+            call.resolve();
+        });
     }
 
     @PluginMethod
     public void getPrefixedKeys(final PluginCall call) {
-        tryStorageOp(
-            call,
-            () -> {
-                String prefix = call.getString("prefix", "");
-                ArrayList<String> keys = getKeysWithPrefix(prefix);
-                JSONArray array = new JSONArray(keys);
+        tryStorageOp(call, () -> {
+            String prefix = call.getString("prefix", "");
+            ArrayList<String> keys = getKeysWithPrefix(prefix);
+            JSONArray array = new JSONArray(keys);
 
-                JSObject result = new JSObject();
-                result.put("keys", array);
-                call.resolve(result);
-            }
-        );
+            JSObject result = new JSObject();
+            result.put("keys", array);
+            call.resolve(result);
+        });
     }
 
     private SharedPreferences getPrefs() {
@@ -186,7 +171,7 @@ public class SecureStoragePlugin extends Plugin {
         ArrayList<String> keys = new ArrayList<>();
         KeyStore keyStore = getKeyStore();
 
-        for (Enumeration<String> aliases = keyStore.aliases(); aliases.hasMoreElements();) {
+        for (Enumeration<String> aliases = keyStore.aliases(); aliases.hasMoreElements(); ) {
             String alias = aliases.nextElement();
 
             if (alias.startsWith(prefix)) {
@@ -325,11 +310,10 @@ public class SecureStoragePlugin extends Plugin {
                     prefixedKey,
                     KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT
                 );
-                spec =
-                    builder
-                        .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                        .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                        .build();
+                spec = builder
+                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                    .build();
             } else {
                 // Let the key pair last for 1 year
                 Calendar start = Calendar.getInstance();
@@ -337,14 +321,13 @@ public class SecureStoragePlugin extends Plugin {
                 end.add(Calendar.YEAR, 1);
 
                 KeyPairGeneratorSpec.Builder builder = new KeyPairGeneratorSpec.Builder(getContext());
-                spec =
-                    builder
-                        .setAlias(prefixedKey)
-                        .setSubject(new X500Principal("CN=" + prefixedKey))
-                        .setSerialNumber(BigInteger.ONE)
-                        .setStartDate(start.getTime())
-                        .setEndDate(end.getTime())
-                        .build();
+                spec = builder
+                    .setAlias(prefixedKey)
+                    .setSubject(new X500Principal("CN=" + prefixedKey))
+                    .setSerialNumber(BigInteger.ONE)
+                    .setStartDate(start.getTime())
+                    .setEndDate(end.getTime())
+                    .build();
             }
 
             keyGenerator.init(spec);
